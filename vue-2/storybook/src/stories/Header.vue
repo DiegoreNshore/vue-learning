@@ -21,22 +21,22 @@
         <h1>Acme</h1>
       </div>
       <div>
-        <my-button size="small" @onClick="onLogout" label="Log out" v-if="user" />
-        <my-button size="small" @onClick="onLogin" label="Log in" v-if="!user" />
-        <my-button primary size="small" @onClick="onCreateAccount" label="Sign up" v-if="!user" />
+        <TheButton size="small" @onClick="onLogout" label="Log out" v-if="user" />
+        <TheButton size="small" @onClick="onLogin" label="Log in" v-if="!user" />
+        <TheButton primary size="small" @onClick="onCreateAccount" label="Sign up" v-if="!user" />
       </div>
     </div>
   </header>
 </template>
 
 <script>
-import './header.css';
-import MyButton from './Button.vue';
+import './header.scss';
+import TheButton from './Button.vue';
 
 export default {
   name: 'my-header',
 
-  components: { MyButton },
+  components: { TheButton },
 
   props: {
     user: {
