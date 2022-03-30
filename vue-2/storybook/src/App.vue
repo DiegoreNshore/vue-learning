@@ -9,6 +9,13 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <TheButton label="Hello" @onClick="handleClicks" />
+
+    <hr>
+    <ul id="users">
+      <li v-for="user in users" v-bind:key="user.id">{{ user.name }}</li>
+    </ul>
+    <hr>
+    <TheButton  v-for="user in users" v-bind:key="user.id" :label="user.name" @onClick="handleClicks" />
   </div>
 </template>
 
@@ -28,7 +35,8 @@ export default {
     return {
         user: {
           name: null
-        }
+        },
+        users: [],
       };
   },
   methods: {
@@ -47,7 +55,14 @@ export default {
       this.$emit('onCreateAccount');
       console.log('onCreateAccount')
     },
-  }
+  },
+  created() {
+      fetch("/api/users")
+        .then((res) => res.json())
+        .then((json) => {
+          this.users = json.users
+        })
+    },
 }
 </script>
 
